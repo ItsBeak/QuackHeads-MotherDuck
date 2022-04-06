@@ -56,9 +56,9 @@ public class PlayerController : MonoBehaviour {
 		
 	public void Init(int teamNumber,int playerNumber){
 		if(teamNumber == 1){
-			controllerNumber = XboxController.First;
-		}else if(teamNumber == 2){
 			controllerNumber = XboxController.Second;
+		}else if(teamNumber == 2){
+			controllerNumber = XboxController.First;
 		}else if(teamNumber == 3){
 			controllerNumber = XboxController.Third;
 		}else if(teamNumber == 4){
@@ -118,7 +118,16 @@ public class PlayerController : MonoBehaviour {
                 targetVelocityHack = new Vector3(targetVelocityHack.x, 0, -1 * forwardAndBackSpeed);
             }
 
-        }
+			if (Input.GetKey(KeyCode.A))
+			{
+				targetVelocityHack = new Vector3(-1 * forwardAndBackSpeed, 0, targetVelocityHack.z);
+			}
+			if (Input.GetKey(KeyCode.D))
+			{
+				targetVelocityHack = new Vector3(1 * forwardAndBackSpeed, 0, targetVelocityHack.z);
+			}
+
+		}
 
         if (gameObject.GetComponent<TimeRecorder>().playerNumber == 2)
         {
@@ -217,13 +226,17 @@ public class PlayerController : MonoBehaviour {
 
 			rotationY +=  XCI.GetAxis(XboxAxis.RightStickY,controllerNumber) * mouseSensitivityY;
 
-            /////
-            ///// Hacked in mouse movement for both players (at the same time)
-            /////
-            rotationY += Input.GetAxis("Mouse Y") * mouseSensitivityY;
+			/////
+			///// Hacked in mouse movement for both players (at the same time)
+			/////
+			///
 
+			if (gameObject.GetComponent<TimeRecorder>().playerNumber == 1)
+            {
+				rotationY += Input.GetAxis("Mouse Y") * mouseSensitivityY;
+			}
 
-            rotationY = Mathf.Clamp (rotationY, minimumY, maximumY);
+			rotationY = Mathf.Clamp (rotationY, minimumY, maximumY);
 
 			transform.localEulerAngles = new Vector3(0, rotationX, 0);
 			head.localEulerAngles = new Vector3(-rotationY,0,0);
@@ -235,14 +248,14 @@ public class PlayerController : MonoBehaviour {
             if (gameObject.GetComponent<TimeRecorder>().playerNumber == 1)
             {
 
-                if (Input.GetKey(KeyCode.A))
-                {
-                    transform.Rotate(0, -1 * mouseSensitivityX, 0);
-                }
-                if (Input.GetKey(KeyCode.D))
-                {
-                    transform.Rotate(0, 1 * mouseSensitivityX, 0);
-                }
+               //if (Input.GetKey(KeyCode.A))
+               //{
+               //    transform.Rotate(0, -1 * mouseSensitivityX, 0);
+               //}
+               //if (Input.GetKey(KeyCode.D))
+               //{
+               //    transform.Rotate(0, 1 * mouseSensitivityX, 0);
+               //}
             }
 
             if (gameObject.GetComponent<TimeRecorder>().playerNumber == 2)
@@ -257,8 +270,13 @@ public class PlayerController : MonoBehaviour {
                     transform.Rotate(0, 1 * mouseSensitivityX, 0);
                 }
             }
-            transform.Rotate(0, Input.GetAxis("Mouse X") * mouseSensitivityX, 0);
-        }
+
+
+			if (gameObject.GetComponent<TimeRecorder>().playerNumber == 1)
+            {
+				transform.Rotate(0, Input.GetAxis("Mouse X") * mouseSensitivityX, 0);
+			}
+		}
 		else if (axes == RotationAxes.MouseX)
 		{
 			transform.Rotate(0, XCI.GetAxis(XboxAxis.RightStickX,controllerNumber) * mouseSensitivityX , 0);
