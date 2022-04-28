@@ -33,6 +33,12 @@ public class TimeRecorder : MonoBehaviour {
 	public Material playerMatRed;
 	public Material playerMatBlue;
 
+	public Material minimapMatRed;
+	public Material minimapMatBlue;
+
+	[Space(10)]
+	public MeshRenderer minimapOrb;
+
 	public void Init(int playerNo, int teamNo){
 		teamNumber = teamNo;
 		playerNumber = playerNo;
@@ -45,9 +51,12 @@ public class TimeRecorder : MonoBehaviour {
 		if (teamNo == 1) {
 			trailMat = blueTrail;
 			GetComponentInChildren<Renderer> ().material = playerMatBlue;
+			minimapOrb.material = minimapMatBlue;
 		} else {
 			trailMat = redTrail;
 			GetComponentInChildren<Renderer> ().material = playerMatRed;
+			minimapOrb.material = minimapMatRed;
+
 		}
 		PlaybackLineRender.GetComponent<PlayerPlaybackTrails> ().init (trailMat);
 
@@ -138,6 +147,7 @@ public class TimeRecorder : MonoBehaviour {
 		playerCamera.SetActive (false);
 		transform.position = recordingList [0].Position;
 		pdm.RestartRound ();
+		minimapOrb.enabled = false;
 
 	}
 
