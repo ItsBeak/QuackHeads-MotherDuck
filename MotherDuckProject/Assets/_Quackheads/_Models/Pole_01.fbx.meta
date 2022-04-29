@@ -3,7 +3,12 @@ guid: 3476519ad3571ca4d8d7b046f28628bf
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Pole_texture
+    second: {fileID: 2800000, guid: d47d0ca56550ed84395b3f845ad1c94a, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
