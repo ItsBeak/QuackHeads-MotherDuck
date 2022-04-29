@@ -6,11 +6,14 @@ public class AudioController : MonoBehaviour {
 
 	public AudioClip getDuck;
 	public AudioClip loseDuck;
-	public AudioClip backgroundAudio;
+	public AudioClip musicAudio;
+	public AudioClip ambienceAudio;
 
-	public AudioSource backgroundAudioSource;
 	public AudioSource getDuckAudioSource;
 	public AudioSource loseDuckAudioSource;
+	public AudioSource musicAudioSource;
+	public AudioSource ambienceAudioSource;
+
 
 
 	public void PickUpDuck(){
@@ -28,9 +31,15 @@ public class AudioController : MonoBehaviour {
 	// Update is called once per frame
 	void Start () {
 	
-		if (backgroundAudioSource) {
-			backgroundAudioSource.clip = backgroundAudio;
-			backgroundAudioSource.Play ();
+		if (musicAudioSource) {
+			musicAudioSource.clip = musicAudio;
+			musicAudioSource.Play ();
+		}
+
+		if (ambienceAudioSource)
+		{
+			ambienceAudioSource.clip = ambienceAudio;
+			ambienceAudioSource.Play();
 		}
 
 		if (getDuck) {
