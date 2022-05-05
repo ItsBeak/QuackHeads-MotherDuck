@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: 0d2a496ad27d7014789f02ec926b66a0
+guid: bd2565c28432dce45bb1a783d0465181
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Paint_can_texture_02
+    second: {fileID: 2800000, guid: ae904fe6734cc53429db67c356c1ac7b, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
