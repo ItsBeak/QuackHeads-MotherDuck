@@ -3,7 +3,12 @@ guid: a0bf5fe57bec50844bd0ed1709f14b9a
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Traffic_cone_export
+    second: {fileID: 2800000, guid: 621cedc8bcef2644080361d8239845fc, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
