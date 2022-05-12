@@ -32,6 +32,8 @@ public class PlayerDuckManager : MonoBehaviour {
 		gc.AdjustScore (GetComponent<TimeRecorder> ().teamNumber, 1);
 		//Debug.Log(duckList.Count);
 
+		duck.CreateParticle(duck.teamNumber);
+
 		GameObject followGO;
 		if (duckList.Count == 0) {
 			followGO = gameObject;
