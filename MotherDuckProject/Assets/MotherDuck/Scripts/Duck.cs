@@ -21,6 +21,9 @@ public class Duck : MonoBehaviour {
 	public Material duckRed;
 	public Material duckBlue;
 
+	public GameObject smokeRed;
+	public GameObject smokeBlue;
+
 	public List<GameObject> colourChangeObjects = new List<GameObject>();
 
 	// Use this for initialization
@@ -167,6 +170,35 @@ public class Duck : MonoBehaviour {
 			Gizmos.color = Color.yellow;
 			Gizmos.DrawLine (transform.position, transformToFollow.position);
 		}
+	}
+
+	public void CreateParticle(int teamNumber)
+    {
+
+		Debug.Log("Creating particle for team: " + teamNumber);
+
+		if (teamNumber == 1)
+        {
+			GameObject newParticle = new GameObject();
+
+			newParticle = GameObject.Instantiate(smokeBlue, new Vector3(0, 0, 0), Quaternion.identity, transform);
+
+			StartCoroutine(RemoveParticle(newParticle.transform));
+        }
+		else
+        {
+			GameObject newParticle = new GameObject();
+
+			newParticle = GameObject.Instantiate(smokeRed, new Vector3(0, 0, 0), Quaternion.identity, transform);
+
+			StartCoroutine(RemoveParticle(newParticle.transform));
+		}
+    }
+
+	IEnumerator RemoveParticle(Transform t)
+    {
+		yield return new WaitForSeconds(2f);
+		GameObject.Destroy(t.gameObject);
 	}
 		
 }
