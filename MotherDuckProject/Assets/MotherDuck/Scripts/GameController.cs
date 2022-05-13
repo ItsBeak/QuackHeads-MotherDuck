@@ -37,6 +37,10 @@ public class GameController : MonoBehaviour {
 	public GameObject inGamePanel;
 	public GameObject MenuPanel;
 
+	bool ticking;
+	public AudioSource tickingSource;
+	public AudioClip tickingClip;
+	public AudioClip trainClip;
 
 	// Use this for initialization
 	void Start () {
@@ -101,7 +105,10 @@ public class GameController : MonoBehaviour {
 	private void FinishRound(){
 		EventManager.TriggerEvent("StopRecording");
 
-		if(GameState != states.replayingGame){
+		ticking = false;
+		tickingSource.PlayOneShot(trainClip);
+
+		if (GameState != states.replayingGame){
 			GameObject GO = Instantiate (scorePointerPrefab, scorePointerParent) as GameObject;
 
 			float finalScore;
@@ -116,6 +123,12 @@ public class GameController : MonoBehaviour {
 		teamTwoScore = 0;
 		teamScore.fillAmount = 0.5f;
 	}
+
+	private void StartTicking()
+    {
+		ticking = true;
+		tickingSource.PlayOneShot(tickingClip);
+    }
 
 	private void StartReplay(){
 		//FinishRound ();
@@ -150,6 +163,12 @@ public class GameController : MonoBehaviour {
 
 	private void PlayGame(){
 		roundTimeText.text = (Mathf.Round(roundLength - Time.time + roundStartTime )).ToString();
+		
+		if(Time.time - roundStartTime > roundLength - 5 && !ticking)
+        {
+			StartTicking();
+        }
+		
 		if(Time.time - roundStartTime > roundLength){
 			//Debug.Log ("NewRound");
 			FinishRound();
