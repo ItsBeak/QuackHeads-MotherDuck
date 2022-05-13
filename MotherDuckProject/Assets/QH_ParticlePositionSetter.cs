@@ -6,6 +6,7 @@ public class QH_ParticlePositionSetter : MonoBehaviour
 {
     void Update()
     {
-        transform.position = GetComponentInParent<Duck>().transform.position;
+        Transform duckPos = GetComponentInParent<Duck>().transform;
+        transform.position = new Vector3(duckPos.position.x, duckPos.position.y + 0.7f, duckPos.position.z);
     }
 }
