@@ -175,7 +175,7 @@ public class Duck : MonoBehaviour {
 	public void CreateParticle(int teamNumber)
     {
 
-		Debug.Log("Creating particle for team: " + teamNumber);
+		//Debug.Log("Creating particle for team: " + teamNumber);
 
 		if (teamNumber == 1)
         {
